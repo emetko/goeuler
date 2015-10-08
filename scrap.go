@@ -11,6 +11,13 @@ import (
 	"bufio"
 )
 
+func main() {
+	const FROM,TO = 21,25
+
+	for i:=FROM;i<=TO;i++ {
+		genSolutionFile(i)
+	}
+}
 
 type problem struct {
 	Id          string
@@ -19,6 +26,43 @@ type problem struct {
 	Description string
 	Answer      string
 }
+
+func genSolutionFile(num int) {
+	templ, _ := template.ParseFiles("resources/solutionTemplate")
+	answers := getAnswers()
+
+	info := getProblem(num)
+	info.Answer = answers[num-1]
+	f, err := os.Create("solutions/" + strings.ToLower(info.Id) + "_test.go")
+	if err != nil {
+		panic(err)
+	}
+	var buf bytes.Buffer
+	templ.Execute(&buf, info)
+	f.WriteString(string(buf.Bytes()))
+	fmt.Print(info)
+}
+
+func getProblem(num int) (p problem) {
+	url := "https://projecteuler.net/problem=" + fmt.Sprintf("%v", num);
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+
+	dom, err := html.Parse(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	content := cascadia.MustCompile("#content").MatchFirst(dom)
+
+	p.Title = getText(cascadia.MustCompile("h2").MatchFirst(content))
+	p.Description = getText(cascadia.MustCompile(".problem_content").MatchFirst(content))
+	p.URL = url
+	p.Id = fmt.Sprintf("Euler%03d", num)
+
+	return p
+
+}
+
 
 /*
   getText returns the inner text of an HTML node.
@@ -61,42 +105,3 @@ func getAnswers() []string {
 	return answers
 }
 
-func getProblem(num int) (p problem) {
-	url := "https://projecteuler.net/problem=" + fmt.Sprintf("%v", num);
-	resp, _ := http.Get(url)
-	defer resp.Body.Close()
-
-	dom, err := html.Parse(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	content := cascadia.MustCompile("#content").MatchFirst(dom)
-
-	p.Title = getText(cascadia.MustCompile("h2").MatchFirst(content))
-	p.Description = getText(cascadia.MustCompile(".problem_content").MatchFirst(content))
-	p.URL = url
-	p.Id = fmt.Sprintf("Euler%03d", num)
-
-	return p
-
-}
-
-func genSolutionFile(num int) {
-	templ, _ := template.ParseFiles("resources/solutionTemplate")
-	answers := getAnswers()
-
-	info := getProblem(num)
-	info.Answer = answers[num-1]
-	f, err := os.Create("solutions/" + strings.ToLower(info.Id) + "_test.go")
-	if err != nil {
-		panic(err)
-	}
-	var buf bytes.Buffer
-	templ.Execute(&buf, info)
-	f.WriteString(string(buf.Bytes()))
-	fmt.Print(info)
-}
-
-func main() {
-	genSolutionFile(20)
-}

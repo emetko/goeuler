@@ -103,18 +103,21 @@ func GetFactors(num int) (fSlice []int) {
 	return fSlice
 }
 
-func GetDivisors(num int) (dSlice []int){
+func Divisors(num int) (dSlice []int){
 	sqrtN := int(math.Sqrt(float64(num)))
-	i:=1
-	for ;i<sqrtN;i++ {
+
+	dSlice = append(dSlice,1)
+	i:=2
+	for ;i<=sqrtN;i++ {
 		if num%i==0{
-			dSlice = append(dSlice,i,num/i)
+			dSlice = append(dSlice,i)
+			if i*i!=num {
+				dSlice = append(dSlice,num/i)
+			}
 		}
 	}
-	if i*i==num {
-		dSlice = append(dSlice,i)
-	}
 
+	dSlice = append(dSlice,num)
 	return dSlice
 }
 

@@ -31,7 +31,7 @@ func Euler012(target int) int{
 	for numDiv<target{
 		i++
 		tNum += i
-		numDiv = len(utils.GetDivisors(tNum))
+		numDiv = len(utils.Divisors(tNum))
 	}
 
 	return tNum

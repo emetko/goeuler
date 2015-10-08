@@ -1,5 +1,8 @@
 package utils
 
+const Alphabet = "abcdefghijklmnopqrstuvwxyz"
+const Numerals = "0123456789"
+
 func  nthdigit(num, pos int) int{
 	powersOf10 := []int{1, 10, 100, 1000, 10000}
 	return ((num / powersOf10[pos]) % 10)
@@ -23,4 +26,12 @@ func Max(is []int) int{
 		}
 	}
 	return maxVal
+}
+
+func Sum(is []int) int{
+	sum := 0
+		for _,v :=range is{
+			sum += v
+		}
+	return sum
 }
