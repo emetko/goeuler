@@ -1,0 +1,25 @@
+package solutions
+
+import "testing"
+
+/*
+------------------------------------------------------------------------------------------------
+ author: Eltjon Metko        ::         {{.Title}}
+------------------------------------------------------------------------------------------------
+Problem URL : {{.URL}}
+{{.Description}}
+------------------------------------------------------------------------------------------------
+*/
+
+func {{.Id}}() int{
+	return 0
+}
+
+func Test{{.Id}}(t *testing.T){
+	expected := {{.Answer}}
+	got := {{.Id}}()
+	t.Logf("Answer: %v | Expected %v",got, expected)
+	if got!=expected{
+		t.Fail()
+	}
+}

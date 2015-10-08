@@ -1,0 +1,6 @@
+##jetbrains
+*.iml
+.idea/
+
+##temp/tests
+test.go
