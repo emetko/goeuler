@@ -6,7 +6,7 @@ import (
 )
 
 
-func isPrime(n int) bool{
+func IsPrime(n int) bool{
 	if n == 2 || n == 3 {
 		return true
 	}
@@ -33,7 +33,7 @@ func NthPrime(n int) int{
 	}
 	num := 3
 	for count:=2;count<=n;num+=2{
-		if isPrime(num){
+		if IsPrime(num){
 			if count==n{
 				return num
 			}else {
@@ -134,4 +134,20 @@ func Fact(n int)  *big.Int{
 
 func Comb(n int,k int) uint64{
 	return new(big.Int).Div(Fact(n),new(big.Int).Mul(Fact(k),Fact(n-k))).Uint64()
+}
+
+func Pow(b int,e int) *big.Int{
+	bb := big.NewInt(int64(b))
+	if e==1{
+		return bb
+	}
+
+	res := big.NewInt(1)
+	q,r := e/2,e%2
+	ires := Pow(b,q)
+	res.Mul(ires,ires)
+	if r>0{
+		res.Mul(res,bb)
+	}
+	return res
 }

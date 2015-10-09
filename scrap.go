@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	const FROM,TO = 21,25
+	const FROM,TO = 26,29
 
 	for i:=FROM;i<=TO;i++ {
 		genSolutionFile(i)
