@@ -1,20 +1,21 @@
 package main
+
 import (
-	"net/http"
+	"bufio"
+	"bytes"
 	"fmt"
 	"github.com/andybalholm/cascadia"
 	"golang.org/x/net/html"
-	"bytes"
-	"strings"
+	"net/http"
 	"os"
+	"strings"
 	"text/template"
-	"bufio"
 )
 
 func main() {
-	const FROM,TO = 26,29
+	const FROM, TO = 30, 35
 
-	for i:=FROM;i<=TO;i++ {
+	for i := FROM; i <= TO; i++ {
 		genSolutionFile(i)
 	}
 }
@@ -44,7 +45,7 @@ func genSolutionFile(num int) {
 }
 
 func getProblem(num int) (p problem) {
-	url := "https://projecteuler.net/problem=" + fmt.Sprintf("%v", num);
+	url := "https://projecteuler.net/problem=" + fmt.Sprintf("%v", num)
 	resp, _ := http.Get(url)
 	defer resp.Body.Close()
 
@@ -63,7 +64,6 @@ func getProblem(num int) (p problem) {
 
 }
 
-
 /*
   getText returns the inner text of an HTML node.
   also try to replace some math/HTML representations with ascii notation.
@@ -73,20 +73,20 @@ func getText(n *html.Node) string {
 	html.Render(&buf, n)
 	nodeText := string(buf.Bytes())
 
-	nodeText = strings.Replace(nodeText,"<sup>","^",-1)
-	nodeText = strings.Replace(nodeText,"<br/>","\n",-1)
+	nodeText = strings.Replace(nodeText, "<sup>", "^", -1)
+	nodeText = strings.Replace(nodeText, "<br/>", "\n", -1)
 	ts := strings.Index(nodeText, "<")
 	te := strings.Index(nodeText, ">")
 	for ts > -1 {
-		nodeText = nodeText[:ts] + nodeText[te + 1:]
+		nodeText = nodeText[:ts] + nodeText[te+1:]
 		ts = strings.Index(nodeText, "<")
 		te = strings.Index(nodeText, ">")
 	}
 
-	nodeText = strings.Replace(nodeText,"&gt;",">",-1)
-	nodeText = strings.Replace(nodeText,"&lt;","<",-1)
+	nodeText = strings.Replace(nodeText, "&gt;", ">", -1)
+	nodeText = strings.Replace(nodeText, "&lt;", "<", -1)
 
-	return strings.TrimRight(nodeText,"\n")
+	return strings.TrimRight(nodeText, "\n")
 }
 
 func getAnswers() []string {
@@ -104,4 +104,3 @@ func getAnswers() []string {
 	}
 	return answers
 }
-

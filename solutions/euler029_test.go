@@ -2,7 +2,6 @@ package solutions
 
 import (
 	"testing"
-	"fmt"
 	"github.com/emetko/goeuler/utils"
 )
 

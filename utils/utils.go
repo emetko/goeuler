@@ -35,3 +35,28 @@ func Sum(is []int) int{
 		}
 	return sum
 }
+
+func Perm(iter string) <-chan string {
+	c := make(chan string)
+	go func(c chan string) {
+		defer close(c)
+		permIter(c, "", iter)
+	}(c)
+
+	return c
+}
+
+
+func permIter(c chan string, combo string, alphabet string) {
+	if len(alphabet) == 0 {
+		c <- combo
+		return
+	}
+
+	for i, ch := range alphabet {
+		newCombo := combo + string(ch)
+		newAlphabet := alphabet[:i]+alphabet[i+1:]
+		permIter(c, newCombo, newAlphabet)
+	}
+
+}

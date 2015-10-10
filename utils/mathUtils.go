@@ -151,3 +151,10 @@ func Pow(b int,e int) *big.Int{
 	}
 	return res
 }
+
+func Gcd(x, y int) int {
+    for y != 0 {
+        x, y = y, x%y
+    }
+    return x
+}

@@ -23,7 +23,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 
 func Euler024(pNum int) string{
 	i:= 1
-	for v := range Perm(utils.Numerals){
+	for v := range utils.Perm(utils.Numerals){
 		if i == pNum{
 			return v
 		}
@@ -32,30 +32,7 @@ func Euler024(pNum int) string{
 	return ""
 }
 
-func Perm(iter string) <-chan string {
-	c := make(chan string)
-	go func(c chan string) {
-		defer close(c)
-		permIter(c, "", iter)
-	}(c)
-	
-	return c
-}
 
-
-func permIter(c chan string, combo string, alphabet string) {
-	if len(alphabet) == 0 {
-		c <- combo
-		return
-	}
-
-	for i, ch := range alphabet {
-		newCombo := combo + string(ch)
-		newAlphabet := alphabet[:i]+alphabet[i+1:]
-		permIter(c, newCombo, newAlphabet)
-	}
-
-}
 
 func TestEuler024(t *testing.T){
 	expected := "2783915460"
