@@ -60,3 +60,4 @@ func permIter(c chan string, combo string, alphabet string) {
 	}
 
 }
+
