@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -28,31 +28,31 @@ starting with n = 0.
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler027(absLimit int) int{
-	maxA,maxB,maxN := 0,0,0
-	for a:= -absLimit;a<absLimit;a++{
-		for b:=-absLimit;b<absLimit;b++{
-			n:=0
-			for{
-				if utils.IsPrime(n*n+a*n+b){
+func Euler027(absLimit int) int {
+	maxA, maxB, maxN := 0, 0, 0
+	for a := -absLimit; a < absLimit; a++ {
+		for b := -absLimit; b < absLimit; b++ {
+			n := 0
+			for {
+				if utils.IsPrime(n*n + a*n + b) {
 					n++
-				}else{
+				} else {
 					break
 				}
 			}
-			if n>maxN{
-				maxA,maxB,maxN = a,b,n
+			if n > maxN {
+				maxA, maxB, maxN = a, b, n
 			}
 		}
 	}
-	return maxA*maxB
+	return maxA * maxB
 }
 
-func TestEuler027(t *testing.T){
+func TestEuler027(t *testing.T) {
 	expected := -59231
 	got := Euler027(1000)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

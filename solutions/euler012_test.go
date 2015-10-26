@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -26,9 +26,9 @@ What is the value of the first triangle number to have over five hundred divisor
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler012(target int) int{
-	tNum,i,numDiv := 1,1,1
-	for numDiv<target{
+func Euler012(target int) int {
+	tNum, i, numDiv := 1, 1, 1
+	for numDiv < target {
 		i++
 		tNum += i
 		numDiv = len(utils.Divisors(tNum))
@@ -37,11 +37,11 @@ func Euler012(target int) int{
 	return tNum
 }
 
-func TestEuler012(t *testing.T){
+func TestEuler012(t *testing.T) {
 	expected := 76576500
 	got := Euler012(500)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
 	"fmt"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -19,21 +19,21 @@ Find the sum of all numbers, less than one million, which are palindromic in bas
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler036() int{
+func Euler036() int {
 	sum := 0
-	for i:=0;i<1000000;i++{
-		if utils.IsPalindrome(fmt.Sprintf("%v",i)) && utils.IsPalindrome(fmt.Sprintf("%b",i)){
+	for i := 0; i < 1000000; i++ {
+		if utils.IsPalindrome(fmt.Sprintf("%v", i)) && utils.IsPalindrome(fmt.Sprintf("%b", i)) {
 			sum += i
 		}
 	}
 	return sum
 }
 
-func TestEuler036(t *testing.T){
+func TestEuler036(t *testing.T) {
 	expected := 872187
 	got := Euler036()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

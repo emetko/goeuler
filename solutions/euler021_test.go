@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -21,41 +21,41 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 func Euler021(limit int) int {
 	sum := 0
-	candidates := make([]bool,limit)
-	for i:=2;i<limit;i++{
-		if !candidates[i]{
+	candidates := make([]bool, limit)
+	for i := 2; i < limit; i++ {
+		if !candidates[i] {
 			c := d(i)
-			if c!=i && d(c)==i{
-				candidates[i]=true
-				candidates[c]=true
+			if c != i && d(c) == i {
+				candidates[i] = true
+				candidates[c] = true
 			}
 		}
 	}
 
-	for i := range candidates{
-		if candidates[i]{
+	for i := range candidates {
+		if candidates[i] {
 			sum += i
 		}
 	}
 	return sum
 }
 
-func d(n int) (sum int){
-	dn := utils.Divisors(n)    //Divisors returns also the number itself at the end of the slice
-	                           // so we need to remove it later from loop
+func d(n int) (sum int) {
+	dn := utils.Divisors(n) //Divisors returns also the number itself at the end of the slice
+	// so we need to remove it later from loop
 	dnl := len(dn)
 
-	for _,v:=range dn[:dnl-1]{
-		sum+=v
+	for _, v := range dn[:dnl-1] {
+		sum += v
 	}
 	return sum
 }
 
-func TestEuler021(t *testing.T){
+func TestEuler021(t *testing.T) {
 	expected := 31626
 	got := Euler021(10000)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

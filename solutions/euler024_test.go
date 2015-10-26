@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -21,10 +21,10 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler024(pNum int) string{
-	i:= 1
-	for v := range utils.Perm(utils.Numerals){
-		if i == pNum{
+func Euler024(pNum int) string {
+	i := 1
+	for v := range utils.Perm(utils.Numerals) {
+		if i == pNum {
 			return v
 		}
 		i++
@@ -32,13 +32,11 @@ func Euler024(pNum int) string{
 	return ""
 }
 
-
-
-func TestEuler024(t *testing.T){
+func TestEuler024(t *testing.T) {
 	expected := "2783915460"
 	got := Euler024(1000000)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

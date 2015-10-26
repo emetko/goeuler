@@ -1,9 +1,9 @@
 package solutions
 
 import (
-"testing"
-"math"
+	"math"
 	"strconv"
+	"testing"
 )
 
 /*
@@ -32,30 +32,30 @@ let's find un upper limit to the numbers under consideration
 
 so we see that for 7 digits (and more) the sum of powers of 5 will have less digits than the numbers itself
 in fact we need to consider up to the max 6 digit number 354294
- */
-func Euler030(power float64) int{
-  	limit := int(6 * math.Pow(9.0,power))
+*/
+func Euler030(power float64) int {
+	limit := int(6 * math.Pow(9.0, power))
 	sum := 0
-	for i:=2;i<limit;i++{
+	for i := 2; i < limit; i++ {
 		sNum := strconv.Itoa(i)
 		iSum := 0
-		for _,c:=range sNum{
-			ic,_ := strconv.Atoi(string(c))
-			iSum += int(math.Pow(float64(ic),power))
+		for _, c := range sNum {
+			ic, _ := strconv.Atoi(string(c))
+			iSum += int(math.Pow(float64(ic), power))
 		}
 
-		if i==iSum{
+		if i == iSum {
 			sum += i
 		}
 	}
 	return sum
 }
 
-func TestEuler030(t *testing.T){
+func TestEuler030(t *testing.T) {
 	expected := 443839
 	got := Euler030(5)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

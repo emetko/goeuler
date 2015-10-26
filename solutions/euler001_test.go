@@ -15,21 +15,21 @@ The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below 1000.
 ------------------------------------------------------------------------------------------------
 */
-func Euler001(max int) int{
+func Euler001(max int) int {
 	sum := 0
-	for num:=0;num<max;num++{
-		if num%3==0 || num%5==0{
+	for num := 0; num < max; num++ {
+		if num%3 == 0 || num%5 == 0 {
 			sum += num
 		}
 	}
 	return sum
 }
 
-func TestEuler001(t *testing.T){
+func TestEuler001(t *testing.T) {
 	expected := 233168
 	got := Euler001(1000)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected {
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

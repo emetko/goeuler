@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"math/big"
+	"testing"
 )
 
 /*
@@ -32,29 +32,29 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler025() int{
+func Euler025() int {
 
 	//build 1e999 as string to initialise the max big.Int
-	sl:="1"
-	for i:=0;i<999;i++{
+	sl := "1"
+	for i := 0; i < 999; i++ {
 		sl += "0"
 	}
 
-	a, b := big.NewInt(0),big.NewInt(1)
-	limit,_ := new(big.Int).SetString(sl,10)
-	i:=1
-	for b.Cmp(limit)<0 {
-		a, b = b, new(big.Int).Add(a,b)
+	a, b := big.NewInt(0), big.NewInt(1)
+	limit, _ := new(big.Int).SetString(sl, 10)
+	i := 1
+	for b.Cmp(limit) < 0 {
+		a, b = b, new(big.Int).Add(a, b)
 		i++
 	}
 	return i
 }
 
-func TestEuler025(t *testing.T){
+func TestEuler025(t *testing.T) {
 	expected := 4782
 	got := Euler025()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

@@ -14,32 +14,32 @@ For which value of p ≤ 1000, is the number of solutions maximised?
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler039() int{
-	maxP,maxS := 0,0;
+func Euler039() int {
+	maxP, maxS := 0, 0
 	//The perimeter is odd at the smollest one is 12 for (3,4,5)
-	for p:=12;p<=1000;p+=2{
-		s:=0
-		for a:=1;a<p/3;a++{
-			for b:=a+1;b<(p-a)/2;b++{
-				c := p-a-b
-				if a*a+b*b==c*c{
+	for p := 12; p <= 1000; p += 2 {
+		s := 0
+		for a := 1; a < p/3; a++ {
+			for b := a + 1; b < (p-a)/2; b++ {
+				c := p - a - b
+				if a*a+b*b == c*c {
 					s++
 				}
 			}
 		}
-		if s>maxS{
-			maxP=p
-			maxS=s
+		if s > maxS {
+			maxP = p
+			maxS = s
 		}
 	}
 	return maxP
 }
 
-func TestEuler039(t *testing.T){
+func TestEuler039(t *testing.T) {
 	expected := 840
 	got := Euler039()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

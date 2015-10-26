@@ -1,10 +1,10 @@
 package solutions
 
 import (
-	"testing"
 	"math/big"
-	"strings"
 	"strconv"
+	"strings"
+	"testing"
 )
 
 /*
@@ -220,25 +220,24 @@ const Data = `37107287533902102798797998220837590246510135740250
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690`
 
-func Euler013() int{
-	ds := strings.Split(Data,"\n")
+func Euler013() int {
+	ds := strings.Split(Data, "\n")
 	sum := new(big.Int)
-	for _,v:=range ds{
+	for _, v := range ds {
 		bigNum := new(big.Int)
-		bigNum.SetString(v,10)
-		sum.Add(sum,bigNum)
+		bigNum.SetString(v, 10)
+		sum.Add(sum, bigNum)
 	}
 
-	res,_:= strconv.Atoi(sum.String()[:10])
+	res, _ := strconv.Atoi(sum.String()[:10])
 	return res
 }
 
-
-func TestEuler013(t *testing.T){
+func TestEuler013(t *testing.T) {
 	expected := 5537376230
 	got := Euler013()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

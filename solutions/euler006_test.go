@@ -18,20 +18,20 @@ Find the difference between the sum of the squares of the first one hundred natu
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler006(max int) int{
-	sumOfSquares,sum := 0, 0
-	for i:=1;i<=max;i++{
-		sumOfSquares += i*i
+func Euler006(max int) int {
+	sumOfSquares, sum := 0, 0
+	for i := 1; i <= max; i++ {
+		sumOfSquares += i * i
 		sum += i
 	}
 	return sum*sum - sumOfSquares
 }
 
-func TestEuler006(t *testing.T){
+func TestEuler006(t *testing.T) {
 	expected := 25164150
 	got := Euler006(100)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

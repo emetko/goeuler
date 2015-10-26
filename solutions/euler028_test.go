@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -44,24 +44,24 @@ notice that top-right value in any layer is size^2
 		and the other 3 corner values are obtained by repeatedly substracting size-1 from the top-right(anti-clockwise)
 */
 
-func Euler028(size int) int{
-	TRxDL := make([]int,0,size-1)
-	TLxDR := make([]int,0,size-1)
+func Euler028(size int) int {
+	TRxDL := make([]int, 0, size-1)
+	TLxDR := make([]int, 0, size-1)
 
-	for i:=3;i<=size;i+=2{
-		tr := i*i
-		TRxDL = append(TRxDL,tr,tr-2*(i-1))
-		TLxDR = append(TLxDR,tr-(i-1),tr-3*(i-1))
+	for i := 3; i <= size; i += 2 {
+		tr := i * i
+		TRxDL = append(TRxDL, tr, tr-2*(i-1))
+		TLxDR = append(TLxDR, tr-(i-1), tr-3*(i-1))
 	}
 
 	return utils.Sum(TRxDL) + utils.Sum(TLxDR) + 1
 }
 
-func TestEuler028(t *testing.T){
+func TestEuler028(t *testing.T) {
 	expected := 669171001
 	got := Euler028(1001)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

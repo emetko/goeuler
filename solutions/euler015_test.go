@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 
 	"math/big"
 )
@@ -34,21 +34,21 @@ How many such routes are there through a 20×20 grid?
 	so we could use the C(n,k) = n!/(k!(n-k)!) for the answer
 	where n = 2N and k=N
 */
-func Euler015(N int) uint64{
-	n,k := (2*N),N
+func Euler015(N int) uint64 {
+	n, k := (2 * N), N
 
 	num := utils.Fact(n)
-	den := new(big.Int).Mul(utils.Fact(k),utils.Fact(n-k))
-	res := new(big.Int).Div(num,den)
+	den := new(big.Int).Mul(utils.Fact(k), utils.Fact(n-k))
+	res := new(big.Int).Div(num, den)
 
 	return res.Uint64()
 }
 
-func TestEuler015(t *testing.T){
+func TestEuler015(t *testing.T) {
 	expected := uint64(137846528820)
 	got := Euler015(20)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

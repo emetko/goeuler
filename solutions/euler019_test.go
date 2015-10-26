@@ -27,12 +27,12 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler019() int{
+func Euler019() int {
 	num := 0
-	for y:=1901;y<2001;y++{
-		for m:=1;m<13;m++{
-			d:= time.Date(y,time.Month(m),1,15,0,0,0,time.UTC)
-			if d.Weekday()==time.Sunday{
+	for y := 1901; y < 2001; y++ {
+		for m := 1; m < 13; m++ {
+			d := time.Date(y, time.Month(m), 1, 15, 0, 0, 0, time.UTC)
+			if d.Weekday() == time.Sunday {
 				num++
 			}
 		}
@@ -40,11 +40,11 @@ func Euler019() int{
 	return num
 }
 
-func TestEuler019(t *testing.T){
+func TestEuler019(t *testing.T) {
 	expected := 171
 	got := Euler019()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

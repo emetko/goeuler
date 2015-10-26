@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
-	"math/big"
 	"github.com/emetko/goeuler/utils"
+	"math/big"
+	"testing"
 )
 
 /*
@@ -30,12 +30,12 @@ Find the value of d < 1000 for which ^1/d contains the longest recurring cycle i
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler026() int{
-	maxL, maxD := 0,0
+func Euler026() int {
+	maxL, maxD := 0, 0
 
-	for d:=0;d<1000;d++{
+	for d := 0; d < 1000; d++ {
 		l := cycle(d)
-		if l>maxL{
+		if l > maxL {
 			maxL = l
 			maxD = d
 		}
@@ -44,23 +44,21 @@ func Euler026() int{
 }
 
 //10^(p−1) = 1 (mod p).
-func cycle(d int) int{
-	for i := 1;i<= d;i++{
+func cycle(d int) int {
+	for i := 1; i <= d; i++ {
 		bd := big.NewInt(int64(d))
-		if 1== new(big.Int).Mod(utils.Pow(10,i),bd).Int64() {
+		if 1 == new(big.Int).Mod(utils.Pow(10, i), bd).Int64() {
 			return i
 		}
 	}
 	return 0
 }
 
-
-
-func TestEuler026(t *testing.T){
+func TestEuler026(t *testing.T) {
 	expected := 983
 	got := Euler026()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

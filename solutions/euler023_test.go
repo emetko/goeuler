@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -28,40 +28,40 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler023(limit int) int{
+func Euler023(limit int) int {
 	abNums := []int{}
 
-	for i:=1;i<limit;i++{
+	for i := 1; i < limit; i++ {
 		d := utils.Divisors(i)
-		if utils.Sum(d[:len(d)-1]) > i{
-			abNums = append(abNums,i)
+		if utils.Sum(d[:len(d)-1]) > i {
+			abNums = append(abNums, i)
 		}
 	}
 
 	possibleSums := make(map[int]bool)
 
-	for _,a1 := range abNums{
-		for _,a2 := range abNums{
-			if a1+a2<limit{
-				possibleSums[a1+a2]=true
+	for _, a1 := range abNums {
+		for _, a2 := range abNums {
+			if a1+a2 < limit {
+				possibleSums[a1+a2] = true
 			}
 		}
 	}
 
 	sum := 0
-	for i:=0;i<limit;i++{
-		if !possibleSums[i]{
+	for i := 0; i < limit; i++ {
+		if !possibleSums[i] {
 			sum += i
 		}
 	}
 	return sum
 }
 
-func TestEuler023(t *testing.T){
+func TestEuler023(t *testing.T) {
 	expected := 4179871
 	got := Euler023(28123)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

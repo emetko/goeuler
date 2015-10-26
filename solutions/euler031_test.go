@@ -17,14 +17,14 @@ How many different ways can £2 be made using any number of coins?
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler031() int{
-	coins := []int{1,2,5,10,20,50,100,200}
+func Euler031() int {
+	coins := []int{1, 2, 5, 10, 20, 50, 100, 200}
 
-	combos := make([]int,201)
+	combos := make([]int, 201)
 	combos[0] = 1
 
-	for _,v := range coins{
-		for i:=v;i<201;i++ {
+	for _, v := range coins {
+		for i := v; i < 201; i++ {
 			combos[i] += combos[i-v]
 		}
 	}
@@ -32,12 +32,11 @@ func Euler031() int{
 	return combos[200]
 }
 
-
-func TestEuler031(t *testing.T){
+func TestEuler031(t *testing.T) {
 	expected := 73682
 	got := Euler031()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

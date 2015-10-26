@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
-	"strconv"
 	"github.com/jbarham/primegen.go"
+	"strconv"
+	"testing"
 )
 
 /*
@@ -22,8 +22,8 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler037() int{
-	np,sum := 0,0
+func Euler037() int {
+	np, sum := 0, 0
 	pg := primegen.New()
 
 	cache := make(map[uint64]bool)
@@ -32,20 +32,19 @@ func Euler037() int{
 	cache[5] = true
 	cache[7] = true
 	pg.SkipTo(13)
-	for np<11{
+	for np < 11 {
 		n := pg.Next()
-		cache[n]=true
+		cache[n] = true
 		red := reductions(n)
 
-
 		allP := true
-		for _,r := range red{
-			if ! cache[r]{
+		for _, r := range red {
+			if !cache[r] {
 				allP = false
 			}
 		}
 		if allP {
-			np ++
+			np++
 			sum += int(n)
 		}
 
@@ -54,22 +53,22 @@ func Euler037() int{
 	return sum
 }
 
-func reductions(n uint64) []uint64{
-	sn := strconv.FormatUint(n,10)
+func reductions(n uint64) []uint64 {
+	sn := strconv.FormatUint(n, 10)
 	nd := len(sn)
-	r := make([]uint64,0,nd*2)
-	for i:=1;i<nd;i++{
-		c1,_ := strconv.Atoi(sn[i:])
-		c2,_ := strconv.Atoi(sn[:nd-i])
-		r = append(r,uint64(c1),uint64(c2))
+	r := make([]uint64, 0, nd*2)
+	for i := 1; i < nd; i++ {
+		c1, _ := strconv.Atoi(sn[i:])
+		c2, _ := strconv.Atoi(sn[:nd-i])
+		r = append(r, uint64(c1), uint64(c2))
 	}
 	return r
 }
 
-func TestEuler037(t *testing.T){
+func TestEuler037(t *testing.T) {
 	expected := 748317
 	got := Euler037()
-	if got!=expected{
+	if got != expected {
 		t.Fail()
 	}
 }

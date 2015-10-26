@@ -1,10 +1,10 @@
 package solutions
 
 import (
-	"testing"
 	"fmt"
-	"strconv"
 	"github.com/emetko/goeuler/utils"
+	"strconv"
+	"testing"
 )
 
 /*
@@ -36,24 +36,23 @@ for m = 4 we have 4+5=9 digits for n=2 so first lower limit is 9123
 
 */
 
-func Euler038() int{
+func Euler038() int {
 	m := 0
-	for n:=9123;n<=9876;n++{
-		sn := fmt.Sprintf("%v%v",n,n*2)
-		if utils.IsPandigital(sn){
-			p,_:=strconv.Atoi(sn)
-			m = max(m,p)
+	for n := 9123; n <= 9876; n++ {
+		sn := fmt.Sprintf("%v%v", n, n*2)
+		if utils.IsPandigital(sn) {
+			p, _ := strconv.Atoi(sn)
+			m = max(m, p)
 		}
 	}
 	return m
 }
 
-
-func TestEuler038(t *testing.T){
+func TestEuler038(t *testing.T) {
 	expected := 932718654
 	got := Euler038()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

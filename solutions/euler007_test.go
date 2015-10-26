@@ -1,8 +1,8 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
+	"testing"
 )
 
 /*
@@ -16,15 +16,15 @@ What is the 10 001st prime number?
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler007() int{
+func Euler007() int {
 	return utils.NthPrime(10001)
 }
 
-func TestEuler007(t *testing.T){
+func TestEuler007(t *testing.T) {
 	expected := 104743
 	got := Euler007()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

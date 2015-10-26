@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
 	"strconv"
+	"testing"
 )
 
 /*
@@ -24,44 +24,43 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler032() int{
+func Euler032() int {
 	prods := make(map[int]bool)
-	for p:=range utils.Perm(utils.Numerals[1:]){
-		_,_,prod := getIdentity(p)
+	for p := range utils.Perm(utils.Numerals[1:]) {
+		_, _, prod := getIdentity(p)
 		prods[prod] = true
 	}
-	sum:=0
-	for k,v:=range prods{
-		if v{
-			sum+=k
+	sum := 0
+	for k, v := range prods {
+		if v {
+			sum += k
 		}
 	}
 	return sum
 }
 
-
-func getIdentity(sNum string) (int, int, int){
+func getIdentity(sNum string) (int, int, int) {
 	sl := len(sNum)
 
-	for i:=0;i<sl/2+1;i++{
-		for j:=i+1;j<sl/2+2;j++{
-			a,_:=strconv.Atoi(sNum[:i])
-			b,_:=strconv.Atoi(sNum[i:j])
-			c,_:=strconv.Atoi(sNum[j:])
-			if a*b==c{
-				return a,b,c
+	for i := 0; i < sl/2+1; i++ {
+		for j := i + 1; j < sl/2+2; j++ {
+			a, _ := strconv.Atoi(sNum[:i])
+			b, _ := strconv.Atoi(sNum[i:j])
+			c, _ := strconv.Atoi(sNum[j:])
+			if a*b == c {
+				return a, b, c
 			}
 		}
 
 	}
-	return 0,0,0
+	return 0, 0, 0
 }
 
-func TestEuler032(t *testing.T){
+func TestEuler032(t *testing.T) {
 	expected := 45228
 	got := Euler032()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

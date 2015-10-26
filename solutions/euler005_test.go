@@ -19,28 +19,28 @@ it's enough to check if X is divisable by y in 11...20
 
 will start the loop at the known lcm(1..10) = 2520 and increment at that step
 */
-func Euler005() int{
+func Euler005() int {
 
-	for num := 2520;;num += 2520 {
+	for num := 2520; ; num += 2520 {
 		breakFound := false
-		for i:=10;i<20;i++{
-			if num%i!=0{
+		for i := 10; i < 20; i++ {
+			if num%i != 0 {
 				breakFound = true
 				break
 			}
 		}
-		if !breakFound{
+		if !breakFound {
 			return num
 		}
 	}
 	return 0
 }
 
-func TestEuler005(t *testing.T){
+func TestEuler005(t *testing.T) {
 	expected := 232792560
 	got := Euler005()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

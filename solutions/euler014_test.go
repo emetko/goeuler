@@ -23,19 +23,19 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler014() int{
+func Euler014() int {
 	const limit = 1000000
-	maxLen,maxNum := 1,1
-	for i:= 1;i<limit;i++{
+	maxLen, maxNum := 1, 1
+	for i := 1; i < limit; i++ {
 		len := 1
-		for n:=i; n>1;len++{
-			if n%2==0{
-				n = n/2
-			}else{
-				n = 3*n+1
+		for n := i; n > 1; len++ {
+			if n%2 == 0 {
+				n = n / 2
+			} else {
+				n = 3*n + 1
 			}
 		}
-		if len>maxLen{
+		if len > maxLen {
 			maxLen = len
 			maxNum = i
 		}
@@ -43,11 +43,11 @@ func Euler014() int{
 	return maxNum
 }
 
-func TestEuler014(t *testing.T){
+func TestEuler014(t *testing.T) {
 	expected := 837799
 	got := Euler014()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

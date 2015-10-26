@@ -1,5 +1,9 @@
 package utils
-import "sort"
+
+import (
+	"sort"
+	"strings"
+)
 
 type SortRunes []rune
 
@@ -21,8 +25,19 @@ func SortString(s string) string {
 	return string(r)
 }
 
-func IsPandigital(s string) bool{
+func IsPandigital(s string) bool {
 	rs := []rune(s)
 	sort.Sort(SortRunes(rs))
-	return string(rs)==Numerals[1:]
+	return string(rs) == Numerals[1:len(s)+1]
+}
+
+func Score(str string) (sc int) {
+	scMap := make(map[rune]int, 26)
+	for i, r := range strings.ToUpper(Alphabet) {
+		scMap[r] = i + 1
+	}
+	for _, r := range str {
+		sc += scMap[r]
+	}
+	return sc
 }

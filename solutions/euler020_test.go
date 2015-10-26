@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
 	"github.com/emetko/goeuler/utils"
 	"strconv"
+	"testing"
 )
 
 /*
@@ -19,21 +19,21 @@ Find the sum of the digits in the number 100!
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler020() int{
+func Euler020() int {
 	sum := 0
 	sf := utils.Fact(100).String()
-	for _,c := range sf{
-		d,_ := strconv.Atoi(string(c))
+	for _, c := range sf {
+		d, _ := strconv.Atoi(string(c))
 		sum += d
 	}
 	return sum
 }
 
-func TestEuler020(t *testing.T){
+func TestEuler020(t *testing.T) {
 	expected := 648
 	got := Euler020()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

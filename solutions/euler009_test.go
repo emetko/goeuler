@@ -16,27 +16,27 @@ Find the product abc.
 */
 
 /*   loop optimisations:
-	max(a) = sum/3 since a<b<c
-	max(b) = (sum-a)/2 since b<c
-	c is sum-a-b
+max(a) = sum/3 since a<b<c
+max(b) = (sum-a)/2 since b<c
+c is sum-a-b
 */
-func Euler009(num int) int{
-	for a:=1;a<num/3;a++{
-		for b:=a+1;b<(num-a)/2;b++{
+func Euler009(num int) int {
+	for a := 1; a < num/3; a++ {
+		for b := a + 1; b < (num-a)/2; b++ {
 			c := num - a - b
-			if c*c == a*a + b*b{
-				return a*b*c
+			if c*c == a*a+b*b {
+				return a * b * c
 			}
 		}
 	}
 	return 0
 }
 
-func TestEuler009(t *testing.T){
+func TestEuler009(t *testing.T) {
 	expected := 31875000
 	got := Euler009(1000)
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

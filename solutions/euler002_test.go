@@ -16,25 +16,24 @@ find the sum of the even-valued terms.
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler002() int{
+func Euler002() int {
 	max := 4000000
 	a, b := 0, 1
 	sum := 0
 	for b < max {
-		if b % 2 == 0 {
+		if b%2 == 0 {
 			sum += b
 		}
-		a, b = b, a + b
+		a, b = b, a+b
 	}
 	return sum
 }
 
-func TestEuler002(t *testing.T){
+func TestEuler002(t *testing.T) {
 	expected := 4613732
 	got := Euler002()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }
-

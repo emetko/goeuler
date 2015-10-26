@@ -1,9 +1,9 @@
 package solutions
 
 import (
-	"testing"
-	"strconv"
 	"github.com/emetko/goeuler/utils"
+	"strconv"
+	"testing"
 )
 
 /*
@@ -20,33 +20,33 @@ If the product of these four fractions is given in its lowest common terms, find
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler033() int{
-	n,d := 1,1
-	for i:=11;i<100;i++{
-		for j:=i+1;j<100;j++{
-			if isFakeFraction(i,j){
+func Euler033() int {
+	n, d := 1, 1
+	for i := 11; i < 100; i++ {
+		for j := i + 1; j < 100; j++ {
+			if isFakeFraction(i, j) {
 				n *= i
 				d *= j
 			}
 		}
 	}
-	return d/utils.Gcd(n,d)
+	return d / utils.Gcd(n, d)
 }
 
-func isFakeFraction(a,b int) bool{
-	if b%10==0{
+func isFakeFraction(a, b int) bool {
+	if b%10 == 0 {
 		return false
 	}
 
 	sa := strconv.Itoa(a)
 	sb := strconv.Itoa(b)
 
-	for i,ca := range sa{
-		for j,cb := range sb{
-			if ca == cb{
-				na,_ := strconv.ParseFloat(sa[:i]+ sa[i+1:],64)
-				nb,_ := strconv.ParseFloat(sb[:j]+ sb[j+1:],64)
-				if na/nb == float64(a)/float64(b){
+	for i, ca := range sa {
+		for j, cb := range sb {
+			if ca == cb {
+				na, _ := strconv.ParseFloat(sa[:i]+sa[i+1:], 64)
+				nb, _ := strconv.ParseFloat(sb[:j]+sb[j+1:], 64)
+				if na/nb == float64(a)/float64(b) {
 					return true
 				}
 			}
@@ -55,11 +55,11 @@ func isFakeFraction(a,b int) bool{
 	return false
 }
 
-func TestEuler033(t *testing.T){
+func TestEuler033(t *testing.T) {
 	expected := 100
 	got := Euler033()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }

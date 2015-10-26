@@ -1,11 +1,11 @@
 package solutions
 
 import (
-	"testing"
-	"io/ioutil"
-	"strings"
-	"sort"
 	"github.com/emetko/goeuler/utils"
+	"io/ioutil"
+	"sort"
+	"strings"
+	"testing"
 )
 
 /*
@@ -27,39 +27,28 @@ What is the total of all the name scores in the file?
 ------------------------------------------------------------------------------------------------
 */
 
-func Euler022() int{
+func Euler022() int {
 
-	ns,err := ioutil.ReadFile("../resources/p022_names.txt")
-	if err != nil{
+	ns, err := ioutil.ReadFile("../resources/p022_names.txt")
+	if err != nil {
 		panic("could not read names file")
 	}
 
-	names := strings.Split(strings.Trim(string(ns),"\""), "\",\"")
+	names := strings.Split(strings.Trim(string(ns), "\""), "\",\"")
 	sort.Strings(names)
 	total := 0
-	for i,v := range names{
-		total += score(v)*(i+1)
+	for i, v := range names {
+		total += utils.Score(v) * (i + 1)
 	}
 
 	return total
 }
 
-func score(str string) (sc int){
-	scMap := make(map[rune]int,26)
-	for i,r:=range strings.ToUpper(utils.Alphabet){
-		scMap[r]=i+1
-	}
-	for _,r := range str{
-		sc += scMap[r]
-	}
-	return sc
-}
-
-func TestEuler022(t *testing.T){
+func TestEuler022(t *testing.T) {
 	expected := 871198282
 	got := Euler022()
-	t.Logf("Answer: %v | Expected %v",got, expected)
-	if got!=expected{
+	t.Logf("Answer: %v | Expected %v", got, expected)
+	if got != expected {
 		t.Fail()
 	}
 }
