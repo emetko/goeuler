@@ -47,8 +47,7 @@ func NthPrime(n int) int {
 func AtkinSieve(maxNum int) []int {
 	var x, y, n int
 	nsqrt := math.Sqrt(float64(maxNum))
-
-	is_prime := make([]bool, maxNum)
+	is_prime := make([]bool, maxNum+1)
 
 	//consider only up to sqrt(N)
 	for x = 1; float64(x) <= nsqrt; x++ {
@@ -89,16 +88,16 @@ func AtkinSieve(maxNum int) []int {
 }
 
 func GetFactors(num int) (fSlice []int) {
-
+	if IsPrime(num) {
+		return []int{num}
+	}
 	primes := AtkinSieve(num / 2)
 
-	fSlice = append(fSlice, 1)
 	for _, v := range primes {
 		if num%v == 0 {
 			fSlice = append(fSlice, v)
 		}
 	}
-	fSlice = append(fSlice, num)
 
 	return fSlice
 }
