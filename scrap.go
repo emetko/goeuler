@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	const FROM, TO = 46, 49
+	const FROM, TO = 50, 55
 
 	for i := FROM; i <= TO; i++ {
 		genSolutionFile(i)
